@@ -1,0 +1,49 @@
+#!/bin/bash
+echo "Passando para PDF..."
+echo $#
+
+latex $1.tex
+dvips -Ppdf -GO $1.dvi
+ps2pdf $1.ps
+
+if (($# == 1)); then
+  rm $1.ps
+  rm $1.dvi
+  rm $1.aux
+  rm $1.log
+
+elif (($# == 2)); then
+  str=$2
+  if test "$str" = "ps"; then
+    rm $1.dvi
+    rm $1.aux
+    rm $1.log
+
+  elif test "$str" = "dvi"; then
+    rm $1.ps
+    rm $1.aux
+    rm $1.log
+  elif test "$str" = "all";then
+    echo "Permanece todos os arquivos"
+  else
+    echo "Comandos não existentes"
+    rm $1.aux
+    rm $1.log
+    rm $1.ps
+    rm $1.dvi
+  fi
+
+elif (($# == 3)); then
+  echo "$2 $3"
+  if [ \( "$2" = "ps" -a "$3" = "dvi" \) -o \( "$2" = "dvi" -a "$3" = "ps" \) ]
+  then
+    rm $1.aux
+    rm $1.log
+  else
+    echo "Comandos não existentes"
+    rm $1.aux
+    rm $1.log
+    rm $1.ps
+    rm $1.dvi
+  fi
+fi

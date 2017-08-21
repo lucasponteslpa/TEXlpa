@@ -1,0 +1,21 @@
+Cada arquivo desse diretório fazem o seguinte:
+- make: baixa os programas necessarios para gerar um arquivo .tex para .pdf
+        seta o modo de operação do script para executavel
+        coloca o script no diretorio de scripts padrões do sistema
+- texpdf: script que converte tex para pdf
+
+
+O comando é executado da seguinte forma
+
+texpdf NOME DO ARQUIVO TEX [OPÇÃO 1] [OPÇÃO 2]
+
+Em NOME DO ARQUIVO TEX não se deve colocar a terminação .tex
+Nas opção deve-se colocar:
+- ps: para que permaneça o arquivo ps gerado
+- dvi: para que permaneça o arquivo dvi gerado
+- all: para que todos os arquivos gerados permaneçam
+
+ATENÇÂO:
+Esse script ele apaga POR PADRAO arquivos .log e o .aux
+Se quiser que eles não sejam executados apenas coloque SOMENTE
+NA OPÇÃO 1 o argumento "all"
